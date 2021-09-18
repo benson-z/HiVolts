@@ -12,47 +12,56 @@ import java.io.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class Display extends JPanel implements KeyListener {
+public class Display extends JPanel {
     private Board board;
-    private Player player;
-
+    private Player player = new Player(0, 0);
     public Display(Board board) {
         this.board = board;
-        this.player = player;
-    }
-    public void keyPressed (KeyEvent e){;
-    }
-    public void keyReleased (KeyEvent e){;
-    }
-    public void keyTyped (KeyEvent e){
-        if (e.getKeyCode() == KeyEvent.VK_Q) {
-            player.move(-1, -1);
-        } else if (e.getKeyCode() == KeyEvent.VK_W) {
-            player.move(0, -1);
-        } else if (e.getKeyCode() == KeyEvent.VK_E) {
-            player.move(1, -1);
-        } else if (e.getKeyCode() == KeyEvent.VK_A) {
-            player.move(-1, 0);
-        } else if (e.getKeyCode() == KeyEvent.VK_S) {
-            player.move(0, 0);
-        } else if (e.getKeyCode() == KeyEvent.VK_D) {
-            player.move(1, 0);
-        } else if (e.getKeyCode() == KeyEvent.VK_Z) {
-            player.move(-1, 1);
-        } else if (e.getKeyCode() == KeyEvent.VK_X) {
-            player.move(0, 1);
-        } else if (e.getKeyCode() == KeyEvent.VK_C) {
-            player.move(1, 1);
-        } else if (e.getKeyCode() == KeyEvent.VK_J) {
-            //player.moveToRandom();
-        }
-        repaint();
+        this.setFocusable(true);
+        this.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyChar() == KeyEvent.VK_Q) {
+                    player.move(-1, -1);
+                } else if (e.getKeyCode() == KeyEvent.VK_W) {
+                    player.move(0, -1);
+                } else if (e.getKeyCode() == KeyEvent.VK_E) {
+                    player.move(1, -1);
+                } else if (e.getKeyCode() == KeyEvent.VK_A) {
+                    player.move(-1, 0);
+                } else if (e.getKeyCode() == KeyEvent.VK_S) {
+                    player.move(0, 0);
+                } else if (e.getKeyCode() == KeyEvent.VK_D) {
+                    player.move(1, 0);
+                } else if (e.getKeyCode() == KeyEvent.VK_Z) {
+                    player.move(-1, 1);
+                } else if (e.getKeyCode() == KeyEvent.VK_X) {
+                    player.move(0, 1);
+                } else if (e.getKeyCode() == KeyEvent.VK_C) {
+                    player.move(1, 1);
+                } else if (e.getKeyCode() == KeyEvent.VK_J) {
+                    player.moveTo(ThreadLocalRandom.current().nextInt(0, 12), ThreadLocalRandom.current().nextInt(0, 12));
+                }
+                repaint();
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
     }
     public Dimension getPreferredSize () {
         return new Dimension(240, 240);
     }
-    public void paintComponent (Graphics g){
+    public void paintComponent (Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
         for (int y = 0; y < 12; y++) {
@@ -63,5 +72,7 @@ public class Display extends JPanel implements KeyListener {
                 }
             }
         }
+        g2d.setColor(Color.RED);
+        g2d.fillRect(player.getX()*20, player.getY()*20, 20, 20);
     }
 }
