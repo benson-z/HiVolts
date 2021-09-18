@@ -3,7 +3,7 @@ import hivolts.*;
 class Hivolts {
     public static void hivolts(String[] args) {
         Board game = new Board();
-        new Hivolts(game, 3000);
+        new Hivolts(game);
     }
     public Hivolts(Board game) {
         EventQueue.invokeLater(new Runnable() {

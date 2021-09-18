@@ -20,9 +20,9 @@ class Display extends JPanel implements KeyListener {
         this.board = board;
         this.player = player;
         @Override
-        public void keyPressed (KeyEvent e){
+        public void keyPressed (KeyEvent e){;
         }
-        public void keyReleased (KeyEvent e){
+        public void keyReleased (KeyEvent e){;
         }
         public void keyTyped (KeyEvent e){
             if (e.getKeyCode == KeyEvent.VK_Q) {
@@ -56,14 +56,7 @@ class Display extends JPanel implements KeyListener {
             Graphics2D g2d = (Graphics2D) g.create();
             for (int y = 0; y < 12; y++) {
                 for (int x = 0; x < 12; x++) {
-                    if (board.getCell(x, y).getType() == State.Empty) {
-                    } else if (board.getCell(x, y).getType() == State.MHO) {
-                        g2d.setColor(Color.BLACK);
-                        g2d.fillRect(x * 20, y * 20, 20, 20);
-                    } else if (board.getCell(x, y).getType() == State.PLAYER) {
-                        g2d.setColor(Color.RED);
-                        g2d.fillRect(x * 20, y * 20, 20, 20);
-                    } else if (board.getCell(x, y).getType() == State.FENCE) {
+                    if (board.getCell(x, y) == 1) {
                         g2d.setColor(Color.GRAY);
                         g2d.fillRect(x * 20, y * 20, 20, 20);
                     }
