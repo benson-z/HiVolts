@@ -16,9 +16,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Display extends JPanel {
     private Board board;
-    private Player player = new Player(0, 0);
+    private Player player;
     public Display(Board board) {
         this.board = board;
+        player = new Player(0, 0, board);
         this.setFocusable(true);
         this.addKeyListener(new KeyListener() {
             @Override
