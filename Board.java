@@ -2,12 +2,12 @@ package hivolts;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-class Board {
-    private int[][] board == new int[12][12];
+public class Board {
+    private int[][] board = new int[12][12];
     public Board() {
         initFences();
     }
-    public initFences() {
+    public void initFences() {
         for (int a=0; a<12; a++) {
             int x = ThreadLocalRandom.current().nextInt(0, 12);
             int y = ThreadLocalRandom.current().nextInt(0, 12);
@@ -19,7 +19,7 @@ class Board {
             }
         }
     }
-    public int getCell(x, y) {
+    public int getCell(int x, int y) {
         return board[x][y];
     }
 }

@@ -1,11 +1,16 @@
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import hivolts.*;
 
-class Hivolts {
-    public static void hivolts(String[] args) {
+public class HiVolts {
+    public static void main(String[] args) {
         Board game = new Board();
-        new Hivolts(game);
+        new HiVolts(game);
     }
-    public Hivolts(Board game) {
+    public HiVolts(Board game) {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
