@@ -21,12 +21,14 @@ public class Display extends JPanel {
     private Vector<Mho> mhos = new Vector<Mho>();
     private int[][] mholist = new int[12][2];
     private BufferedImage image = null;
+    private BufferedImage playerimg = null;
     private boolean playerDeath = false;
     private int moves;
     public Display() {
         setup();
         try {
             image = ImageIO.read(new File("hivolts/fence.png"));
+            playerimg = ImageIO.read(new File("hivolts/player.png"));
         } catch (IOException e) {
         }
         this.setFocusable(true);
@@ -156,8 +158,7 @@ public class Display extends JPanel {
                     }
                 }
             }
-            g2d.setColor(Color.RED);
-            g2d.fillRect(player.getX() * 20, player.getY() * 20, 20, 20);
+            g2d.drawImage(playerimg, player.getX() * 20, player.getY() * 20, null);
             for (Mho a : mhos) {
                 g2d.setColor(Color.GREEN);
                 g2d.fillRect(a.getX() * 20, a.getY() * 20, 20, 20);
