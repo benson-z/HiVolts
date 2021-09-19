@@ -105,7 +105,12 @@ public class Display extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
         if (mhos.size() == 0) {
-            //Win Screen goes here
+            g2d.setColor(Color.GREEN);
+            g2d.fillRect(0, 0, 240, 240);
+            Font font = new Font("Serif", Font.PLAIN, 24);
+            g2d.setFont(font);
+            g2d.setColor(Color.BLACK);
+            g2d.drawString("You win!", 80, 120);
         }
         else {
             for (int y = 0; y < 12; y++) {
