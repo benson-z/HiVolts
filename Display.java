@@ -31,7 +31,7 @@ public class Display extends JPanel {
                     }
                 }
                 if (c == 0) {
-                    mhos.add(new Mho(x, y, player));
+                    mhos.add(new Mho(x, y, player, board));
                 }
                 else {
                     a--;
@@ -70,6 +70,11 @@ public class Display extends JPanel {
                     player.move(1, 1);
                 } else if (e.getKeyCode() == KeyEvent.VK_J) {
                     player.moveToRandom();
+                }
+                for (int a=0; a<mhos.size(); a++) {
+                    if (!mhos.get(a).update()) {
+                        mhos.remove(a);
+                    }
                 }
                 repaint();
             }
