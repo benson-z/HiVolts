@@ -1,8 +1,12 @@
+package hivolts;
+
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class HiVolts implements ActionListener {
+import hivolts.*;
+
+public class HiVolts {
     public static void main(String[] args) {
         new HiVolts();
     }
