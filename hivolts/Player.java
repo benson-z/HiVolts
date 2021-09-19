@@ -14,10 +14,8 @@ public class Player {
         this.board = board;
     }
     public void move(int x, int y) {
-        if (board.getCell(this.x + x, this.y + y) != 1){
-            this.x += x;
-            this.y += y;
-        }
+        this.x += x;
+        this.y += y;
     }
     public void moveToRandom() {
         for (int a=0; a<1; a++) {
