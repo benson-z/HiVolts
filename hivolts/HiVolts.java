@@ -1,14 +1,16 @@
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.util.Scanner;
 
 import hivolts.*;
 
 public class HiVolts {
     public static void main(String[] args) {
-        new HiVolts();
+        Scanner myObj = new Scanner(System.in);
+        new HiVolts(myObj.nextInt(), myObj.nextInt());
     }
-    public HiVolts() {
+    public HiVolts(int boardx, int boardy) {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -19,7 +21,7 @@ public class HiVolts {
                 }
                 JFrame frame = new JFrame("HiVolts");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                Display display = new Display();
+                Display display = new Display(boardx, boardy);
                 frame.add(display);
                 frame.pack();
                 frame.setLocationRelativeTo(null);

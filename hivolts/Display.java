@@ -22,12 +22,14 @@ public class Display extends JPanel {
     private Board board;
     private Player player;
     private Vector<Mho> mhos = new Vector<Mho>();
-    private int[][] mholist = new int[(int) Math.floor(boardx*boardy*0.12)][2];
+    private int[][] mholist;
     private BufferedImage image = null;
     private BufferedImage playerimg = null;
     private boolean playerDeath = false;
     private int moves;
-    public Display() {
+    public Display(int boardx, int boardy) {
+        this.boardx = boardx;
+        this.boardy = boardy;
         setup();
         try {
             image = ImageIO.read(new File("hivolts/fence.png"));
@@ -109,6 +111,7 @@ public class Display extends JPanel {
         Boolean check = true;
         this.playerDeath = false;
         this.moves = 0;
+        this.mholist = new int[(int) Math.floor(boardx*boardy*0.12)][2];
         mhos = new Vector<Mho>();
         for (int a = 0; a < (int) Math.floor(boardx*boardy*0.12); a++) {
             int x = ThreadLocalRandom.current().nextInt(1, boardx-1);
