@@ -1,4 +1,4 @@
-import java.awt.EventQueue;
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -20,6 +20,7 @@ public class HiVolts {
                 }
                 JFrame frame = new JFrame("HiVolts");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setBackground(Color.WHITE);
                 Display display = new Display();
                 frame.add(display);
                 frame.pack();
