@@ -149,7 +149,7 @@ public class Display extends JPanel {
         Graphics2D g2d = (Graphics2D) g.create();
         if (playerDeath) {
             g2d.setColor(Color.RED);
-            g2d.fillRect(0, 0, 240, 240);
+            g2d.fillRect(0, 0, 240, 280);
             Font font = new Font("Serif", Font.PLAIN, 24);
             g2d.setFont(font);
             g2d.setColor(Color.BLACK);
@@ -157,7 +157,7 @@ public class Display extends JPanel {
             g2d.drawString("Press 'r' to restart", 40, 140);
         } else if (mhos.size() == 0) {
             g2d.setColor(Color.GREEN);
-            g2d.fillRect(0, 0, 240, 240);
+            g2d.fillRect(0, 0, 240, 280);
             Font font = new Font("Serif", Font.PLAIN, 24);
             g2d.setFont(font);
             g2d.setColor(Color.BLACK);
