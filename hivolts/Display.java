@@ -103,7 +103,7 @@ public class Display extends JPanel {
     private void setup() {
         this.board = new Board();
         this.player = new Player(0, 0, board);
-        this.player.moveToRandom();
+        Boolean check = true;
         this.playerDeath = false;
         this.moves = 0;
         mhos = new Vector<Mho>();
@@ -127,6 +127,19 @@ public class Display extends JPanel {
                 }
             } else {
                 a--;
+            }
+        }
+        while (check == true) {
+            this.player.moveToRandom();
+            int z = 0;
+            for (int a = 0; a < mhos.size(); a++)
+                if (player.getX() == mholist[a][0] && player.getY() == mholist[a][1])
+                    z = 1;
+            if (board.getCell(player.getX(), player.getY()) == 1) {
+                z = 1;
+            }
+            if (z == 0) {
+                check = false;
             }
         }
     }
