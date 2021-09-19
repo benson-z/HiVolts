@@ -16,10 +16,7 @@ public class Mho {
         this.mholist = mholist;
     }
     private Boolean availible(int x, int y) {
-        if (x == player.getX() && y == player.getY()) {
-            return false;
-        }
-        else if (board.getCell(x, y) == 1) {
+        if (board.getCell(x, y) == 1) {
             return false;
         }
         for (int[] a : mholist) {
@@ -30,9 +27,6 @@ public class Mho {
         return true;
     }
     private Boolean availible2(int x, int y) {
-        if (x == player.getX() && y == player.getY()) {
-            return false;
-        }
         for (int[] a : mholist) {
             if (a[0] == x && a[1] == y) {
                 return false;
