@@ -16,6 +16,8 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 public class Display extends JPanel {
+    private int boardx = 20;
+    private int boardy = 20;
     private Board board;
     private Player player;
     private Vector<Mho> mhos = new Vector<Mho>();
@@ -97,19 +99,19 @@ public class Display extends JPanel {
     }
 
     public Dimension getPreferredSize() {
-        return new Dimension(240, 280);
+        return new Dimension(boardx*20, boardy*20+40);
     }
 
     private void setup() {
-        this.board = new Board();
+        this.board = new Board(boardx, boardy);
         this.player = new Player(0, 0, board);
         Boolean check = true;
         this.playerDeath = false;
         this.moves = 0;
         mhos = new Vector<Mho>();
         for (int a = 0; a < 12; a++) {
-            int x = ThreadLocalRandom.current().nextInt(1, 11);
-            int y = ThreadLocalRandom.current().nextInt(1, 11);
+            int x = ThreadLocalRandom.current().nextInt(1, boardx-1);
+            int y = ThreadLocalRandom.current().nextInt(1, boardy-1);
             if (board.getCell(x, y) != 1) {
                 int c = 0;
                 for (Mho b : mhos) {
@@ -149,7 +151,7 @@ public class Display extends JPanel {
         Graphics2D g2d = (Graphics2D) g.create();
         if (playerDeath) {
             g2d.setColor(Color.RED);
-            g2d.fillRect(0, 0, 240, 280);
+            g2d.fillRect(0, 0, boardx*20, boardy*20+40);
             Font font = new Font("Serif", Font.PLAIN, 24);
             g2d.setFont(font);
             g2d.setColor(Color.BLACK);
@@ -157,15 +159,15 @@ public class Display extends JPanel {
             g2d.drawString("Press 'r' to restart", 40, 140);
         } else if (mhos.size() == 0) {
             g2d.setColor(Color.GREEN);
-            g2d.fillRect(0, 0, 240, 280);
+            g2d.fillRect(0, 0, boardx*20, boardy*20+40);
             Font font = new Font("Serif", Font.PLAIN, 24);
             g2d.setFont(font);
             g2d.setColor(Color.BLACK);
             g2d.drawString("You win!", 80, 100);
             g2d.drawString("Press 'r' to restart", 40, 140);
         } else {
-            for (int y = 0; y < 12; y++) {
-                for (int x = 0; x < 12; x++) {
+            for (int y = 0; y < boardx; y++) {
+                for (int x = 0; x < boardy; x++) {
                     if (board.getCell(x, y) == 1) {
                         g2d.drawImage(image, x * 20, y * 20, null);
                     }
@@ -177,7 +179,7 @@ public class Display extends JPanel {
                 g2d.fillRect(a.getX() * 20, a.getY() * 20, 20, 20);
             }
             g2d.setColor(Color.BLACK);
-            g2d.drawString("Moves: " + this.moves, 5, 260);
+            g2d.drawString("Moves: " + this.moves, 5, boardy*20+20);
         }
     }
 }
