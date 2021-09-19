@@ -26,7 +26,7 @@ public class Display extends JPanel {
     public Display() {
         setup();
         try {
-            image = ImageIO.read(new File("fence.png"));
+            image = ImageIO.read(new File("hivolts/fence.png"));
         } catch (IOException e) {
         }
         this.setFocusable(true);
