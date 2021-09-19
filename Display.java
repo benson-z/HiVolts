@@ -1,5 +1,6 @@
 package hivolts;
 
+import java.security.Key;
 import java.util.*;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,34 +18,8 @@ public class Display extends JPanel {
     private Player player;
     private Vector<Mho> mhos = new Vector<Mho>();
     private int[][] mholist = new int[12][2];
-    public Display(Board board) {
-        this.board = board;
-        player = new Player(0, 0, board);
-        player.moveToRandom();
-        for (int a=0; a<12; a++) {
-            int x = ThreadLocalRandom.current().nextInt(1, 11);
-            int y = ThreadLocalRandom.current().nextInt(1, 11);
-            if (board.getCell(x, y) != 1) {
-                int c = 0;
-                for (Mho b : mhos) {
-                    if (b.getX() == x && b.getY() == y) {
-                        c = 1;
-                        break;
-                    }
-                }
-                if (c == 0) {
-                    mhos.add(new Mho(x, y, player, board, mholist));
-                    mholist[a][0] = x;
-                    mholist[a][1] = y;
-                }
-                else {
-                    a--;
-                }
-            }
-            else {
-                a--;
-            }
-        }
+    public Display() {
+        setup();
         this.setFocusable(true);
         this.addKeyListener(new KeyListener() {
             @Override
@@ -76,6 +51,9 @@ public class Display extends JPanel {
                 } else if (e.getKeyCode() == KeyEvent.VK_J) {
                     player.moveToRandom();
                     code = 1;
+                } else if (e.getKeyCode() == KeyEvent.VK_R) {
+                    setup();
+                    code = 1;
                 }
                 if (code == 0) {
                     for (int a = 0; a < mhos.size(); a++) {
@@ -100,6 +78,36 @@ public class Display extends JPanel {
     }
     public Dimension getPreferredSize () {
         return new Dimension(240, 240);
+    }
+    private void setup() {
+        this.board = new Board();
+        this.player = new Player(0, 0, board);
+        this.player.moveToRandom();
+        mhos = new Vector<Mho>();
+        for (int a=0; a<12; a++) {
+            int x = ThreadLocalRandom.current().nextInt(1, 11);
+            int y = ThreadLocalRandom.current().nextInt(1, 11);
+            if (board.getCell(x, y) != 1) {
+                int c = 0;
+                for (Mho b : mhos) {
+                    if (b.getX() == x && b.getY() == y) {
+                        c = 1;
+                        break;
+                    }
+                }
+                if (c == 0) {
+                    mhos.add(new Mho(x, y, player, board, mholist));
+                    mholist[a][0] = x;
+                    mholist[a][1] = y;
+                }
+                else {
+                    a--;
+                }
+            }
+            else {
+                a--;
+            }
+        }
     }
     public void paintComponent (Graphics g) {
         super.paintComponent(g);

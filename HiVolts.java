@@ -7,10 +7,9 @@ import hivolts.*;
 
 public class HiVolts {
     public static void main(String[] args) {
-        Board game = new Board();
-        new HiVolts(game);
+        new HiVolts();
     }
-    public HiVolts(Board game) {
+    public HiVolts() {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -21,7 +20,7 @@ public class HiVolts {
                 }
                 JFrame frame = new JFrame("HiVolts");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                Display display = new Display(game);
+                Display display = new Display();
                 frame.add(display);
                 frame.pack();
                 frame.setLocationRelativeTo(null);
