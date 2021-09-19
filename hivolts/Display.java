@@ -95,7 +95,7 @@ public class Display extends JPanel {
     }
 
     public Dimension getPreferredSize() {
-        return new Dimension(240, 240);
+        return new Dimension(240, 280);
     }
 
     private void setup() {
@@ -103,7 +103,7 @@ public class Display extends JPanel {
         this.player = new Player(0, 0, board);
         this.player.moveToRandom();
         this.playerDeath = false;
-        this.moves = 0
+        this.moves = 0;
         mhos = new Vector<Mho>();
         for (int a = 0; a < 12; a++) {
             int x = ThreadLocalRandom.current().nextInt(1, 11);
@@ -138,14 +138,16 @@ public class Display extends JPanel {
             Font font = new Font("Serif", Font.PLAIN, 24);
             g2d.setFont(font);
             g2d.setColor(Color.BLACK);
-            g2d.drawString("You lose!", 80, 120);
+            g2d.drawString("You lose!", 80, 100);
+            g2d.drawString("Press 'r' to restart", 40, 140);
         } else if (mhos.size() == 0) {
             g2d.setColor(Color.GREEN);
             g2d.fillRect(0, 0, 240, 240);
             Font font = new Font("Serif", Font.PLAIN, 24);
             g2d.setFont(font);
             g2d.setColor(Color.BLACK);
-            g2d.drawString("You win!", 80, 120);
+            g2d.drawString("You win!", 80, 100);
+            g2d.drawString("Press 'r' to restart", 40, 140);
         } else {
             for (int y = 0; y < 12; y++) {
                 for (int x = 0; x < 12; x++) {
@@ -160,6 +162,8 @@ public class Display extends JPanel {
                 g2d.setColor(Color.GREEN);
                 g2d.fillRect(a.getX() * 20, a.getY() * 20, 20, 20);
             }
+            g2d.setColor(Color.BLACK);
+            g2d.drawString("Moves: " + this.moves, 5, 260);
         }
     }
 }
