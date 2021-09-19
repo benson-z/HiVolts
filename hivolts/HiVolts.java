@@ -1,11 +1,8 @@
-import java.awt.*;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import java.awt.EventQueue;
+import java.awt.event.ActionListener;
+import javax.swing.*;
 
-import hivolts.*;
-
-public class HiVolts {
+public class HiVolts implements ActionListener {
     public static void main(String[] args) {
         new HiVolts();
     }
@@ -20,12 +17,20 @@ public class HiVolts {
                 }
                 JFrame frame = new JFrame("HiVolts");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setBackground(Color.WHITE);
+                //JButton button = new JButton("Quit");
+                //frame.add(button);
                 Display display = new Display();
                 frame.add(display);
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
+
+                /*button.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        frame.dispose();
+                    }
+                });*/
             }
         });
     }
