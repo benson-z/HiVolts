@@ -1,6 +1,7 @@
 package hivolts;
 
 import java.lang.Math;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Player {
     private int x;
@@ -17,9 +18,14 @@ public class Player {
             this.y += y;
         }
     }
-    public void moveTo(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public void moveToRandom() {
+        for (int a=0; a<1; a++) {
+            x = ThreadLocalRandom.current().nextInt(0, 12);
+            y = ThreadLocalRandom.current().nextInt(0, 12);
+            if (board.getCell(x, y) == 1) {
+                a--;
+            }
+        }
     }
     public int getX() {
         return x;

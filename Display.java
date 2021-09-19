@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import java.io.*;
 import java.awt.*;
@@ -48,7 +46,7 @@ public class Display extends JPanel {
                 } else if (e.getKeyCode() == KeyEvent.VK_C) {
                     player.move(1, 1);
                 } else if (e.getKeyCode() == KeyEvent.VK_J) {
-                    player.moveTo(ThreadLocalRandom.current().nextInt(0, 12), ThreadLocalRandom.current().nextInt(0, 12));
+                    player.moveToRandom();
                 }
                 repaint();
             }
