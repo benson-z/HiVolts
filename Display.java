@@ -15,9 +15,32 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Display extends JPanel {
     private Board board;
     private Player player;
+    private Vector<Mho> mhos = new Vector<Mho>();
     public Display(Board board) {
         this.board = board;
         player = new Player(0, 0, board);
+        for (int a=0; a<12; a++) {
+            int x = ThreadLocalRandom.current().nextInt(0, 12);
+            int y = ThreadLocalRandom.current().nextInt(0, 12);
+            if (board.getCell(x, y) != 1) {
+                int c = 0;
+                for (Mho b : mhos) {
+                    if (b.getX() == x && b.getY() == y) {
+                        c = 1;
+                        break;
+                    }
+                }
+                if (c == 0) {
+                    mhos.add(new Mho(x, y, player));
+                }
+                else {
+                    a--;
+                }
+            }
+            else {
+                a--;
+            }
+        }
         this.setFocusable(true);
         this.addKeyListener(new KeyListener() {
             @Override
@@ -27,7 +50,7 @@ public class Display extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyChar() == KeyEvent.VK_Q) {
+                if (e.getKeyCode() == KeyEvent.VK_Q) {
                     player.move(-1, -1);
                 } else if (e.getKeyCode() == KeyEvent.VK_W) {
                     player.move(0, -1);
@@ -73,5 +96,9 @@ public class Display extends JPanel {
         }
         g2d.setColor(Color.RED);
         g2d.fillRect(player.getX()*20, player.getY()*20, 20, 20);
+        for (Mho a : mhos) {
+            g2d.setColor(Color.GREEN);
+            g2d.fillRect(a.getX()*20, a.getY()*20, 20, 20);
+        }
     }
 }
