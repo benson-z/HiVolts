@@ -1,6 +1,5 @@
 package hivolts;
 
-import java.security.Key;
 import java.util.*;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,7 +8,6 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 import java.io.*;
 import java.awt.*;
-import javax.swing.*;
 import java.awt.event.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.awt.image.BufferedImage;
@@ -24,7 +22,7 @@ public class Display extends JPanel {
     public Display() {
         setup();
         try {
-            image = ImageIO.read(new File("fence.png"));
+            image = ImageIO.read(new File("hivolts/fence.png"));
         } catch (IOException e) {}
         this.setFocusable(true);
         this.addKeyListener(new KeyListener() {
