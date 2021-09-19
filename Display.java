@@ -54,6 +54,7 @@ public class Display extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
+                int code = 0;
                 if (e.getKeyCode() == KeyEvent.VK_Q) {
                     player.move(-1, -1);
                 } else if (e.getKeyCode() == KeyEvent.VK_W) {
@@ -74,16 +75,18 @@ public class Display extends JPanel {
                     player.move(1, 1);
                 } else if (e.getKeyCode() == KeyEvent.VK_J) {
                     player.moveToRandom();
+                    code = 1;
                 }
-                for (int a=0; a<mhos.size(); a++) {
-                    if (!mhos.get(a).update()) {
-                        mhos.remove(a);
-                        mholist[a][0] = 0;
-                        mholist[a][1] = 0;
-                    }
-                    else {
-                        mholist[a][0] = mhos.get(a).getX();
-                        mholist[a][1] = mhos.get(a).getY();
+                if (code == 0) {
+                    for (int a = 0; a < mhos.size(); a++) {
+                        if (!mhos.get(a).update()) {
+                            mhos.remove(a);
+                            mholist[a][0] = 0;
+                            mholist[a][1] = 0;
+                        } else {
+                            mholist[a][0] = mhos.get(a).getX();
+                            mholist[a][1] = mhos.get(a).getY();
+                        }
                     }
                 }
                 repaint();
