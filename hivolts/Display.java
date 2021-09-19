@@ -22,7 +22,7 @@ public class Display extends JPanel {
     private int[][] mholist = new int[12][2];
     private BufferedImage image = null;
     private boolean playerDeath = false;
-
+    private int moves;
     public Display() {
         setup();
         try {
@@ -64,6 +64,7 @@ public class Display extends JPanel {
                     setup();
                     code = 1;
                 }
+                moves ++;
                 if (code == 0) {
                     for (int a = 0; a < mhos.size(); a++) {
                         if (!mhos.get(a).update()) {
@@ -101,6 +102,8 @@ public class Display extends JPanel {
         this.board = new Board();
         this.player = new Player(0, 0, board);
         this.player.moveToRandom();
+        this.playerDeath = false;
+        this.moves = 0
         mhos = new Vector<Mho>();
         for (int a = 0; a < 12; a++) {
             int x = ThreadLocalRandom.current().nextInt(1, 11);
