@@ -2,6 +2,7 @@ package hivolts;
 
 import java.lang.Math;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.Vector;
 
 public class Player {
     private int x;

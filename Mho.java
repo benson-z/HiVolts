@@ -55,14 +55,14 @@ public class Mho {
         else if (ydif == 0 && xdif <= 0 && availible(x-1, y)) {
             x--;
         }
-        else if (Math.abs(xdif) == Math.abs(ydif) && availible(x + xdif/Math.abs(xdif), y + ydif/Math.abs(ydif))) {
+        else if (Math.abs(ydif) == Math.abs(xdif) && availible(x + (xdif/Math.abs(xdif)), y + (ydif/Math.abs(ydif)))) {
             x += xdif/Math.abs(xdif);
             y += ydif/Math.abs(ydif);
         }
-        else if (Math.abs(xdif) > Math.abs(ydif) && availible(x + xdif/Math.abs(xdif), y)){
+        else if (Math.abs(xdif) > Math.abs(ydif) && availible(x + (xdif/Math.abs(xdif)), y)){
             x += xdif/Math.abs(xdif);
         }
-        else if (Math.abs(xdif) < Math.abs(ydif) && availible(x, y + ydif/Math.abs(ydif))){
+        else if (Math.abs(xdif) < Math.abs(ydif) && availible(x, y + (ydif/Math.abs(ydif)))){
             y += ydif/Math.abs(ydif);
         }
         else {
