@@ -12,14 +12,20 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 
 public class Display extends JPanel {
     private Board board;
     private Player player;
     private Vector<Mho> mhos = new Vector<Mho>();
     private int[][] mholist = new int[12][2];
+    private BufferedImage image = null;
     public Display() {
         setup();
+        try {
+            image = ImageIO.read(new File("fence.png"));
+        } catch (IOException e) {}
         this.setFocusable(true);
         this.addKeyListener(new KeyListener() {
             @Override
@@ -124,8 +130,7 @@ public class Display extends JPanel {
             for (int y = 0; y < 12; y++) {
                 for (int x = 0; x < 12; x++) {
                     if (board.getCell(x, y) == 1) {
-                        g2d.setColor(Color.GRAY);
-                        g2d.fillRect(x * 20, y * 20, 20, 20);
+                        g2d.drawImage(image,x*20,y*20 ,null);
                     }
                 }
             }
