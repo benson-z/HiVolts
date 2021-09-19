@@ -20,8 +20,8 @@ public class Player {
     }
     public void moveToRandom() {
         for (int a=0; a<1; a++) {
-            x = ThreadLocalRandom.current().nextInt(0, 12);
-            y = ThreadLocalRandom.current().nextInt(0, 12);
+            x = ThreadLocalRandom.current().nextInt(1, 11);
+            y = ThreadLocalRandom.current().nextInt(1, 11);
             if (board.getCell(x, y) == 1) {
                 a--;
             }
