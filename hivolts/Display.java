@@ -107,7 +107,7 @@ public class Display extends JPanel {
 
     private void setup() {
         this.board = new Board(boardx, boardy);
-        this.player = new Player(0, 0, board);
+        this.player = new Player(0, 0, board, boardx, boardy);
         Boolean check = true;
         this.playerDeath = false;
         this.moves = 0;
