@@ -32,8 +32,8 @@ public class Display extends JPanel {
         this.boardy = boardy;
         setup();
         try {
-            image = ImageIO.read(new File("hivolts/fence.png"));
-            playerimg = ImageIO.read(new File("hivolts/player.png"));
+            image = ImageIO.read(new File("fence.png"));
+            playerimg = ImageIO.read(new File("player.png"));
         } catch (IOException e) {
         }
         this.setFocusable(true);
