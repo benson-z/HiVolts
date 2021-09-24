@@ -172,8 +172,8 @@ public class Display extends JPanel {
             g2d.drawString("You win!", 80, 100);
             g2d.drawString("Press 'r' to restart", 40, 140);
         } else {
-            for (int y = 0; y < boardx; y++) {
-                for (int x = 0; x < boardy; x++) {
+            for (int y = 0; y < boardy; y++) {
+                for (int x = 0; x < boardx; x++) {
                     if (board.getCell(x, y) == 1) {
                         g2d.drawImage(image, x * 20, y * 20, null);
                     }
