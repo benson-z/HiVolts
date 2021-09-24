@@ -1,3 +1,6 @@
+package hivolts;
+//only needed for me
+
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -20,9 +23,14 @@ public class HiVolts {
                     ex.printStackTrace();
                 }
                 JFrame frame = new JFrame("HiVolts");
+                //start page
+                /*JButton button = new JButton();*/
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 Display display = new Display(boardx, boardy);
                 frame.add(display);
+                /*frame.add(button);
+                button.setBounds( );*/
+
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
