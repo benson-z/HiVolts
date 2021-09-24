@@ -17,8 +17,8 @@ import javax.imageio.ImageIO;
 import java.lang.Math;
 
 public class Display extends JPanel {
-    private int boardx = 20;
-    private int boardy = 20;
+    private int boardx = 40;
+    private int boardy = 40;
     private Board board;
     private Player player;
     private Vector<Mho> mhos = new Vector<Mho>();
@@ -27,6 +27,7 @@ public class Display extends JPanel {
     private BufferedImage playerimg = null;
     private boolean playerDeath = false;
     private int moves;
+
     public Display(int boardx, int boardy) {
         this.boardx = boardx;
         this.boardy = boardy;
@@ -71,7 +72,7 @@ public class Display extends JPanel {
                     setup();
                     code = 1;
                 }
-                moves ++;
+                moves++;
                 if (code == 0) {
                     for (int a = 0; a < mhos.size(); a++) {
                         if (!mhos.get(a).update()) {
@@ -102,7 +103,7 @@ public class Display extends JPanel {
     }
 
     public Dimension getPreferredSize() {
-        return new Dimension(boardx*20, boardy*20+40);
+        return new Dimension(boardx * 20, boardy * 20 + 40);
     }
 
     private void setup() {
@@ -111,11 +112,11 @@ public class Display extends JPanel {
         Boolean check = true;
         this.playerDeath = false;
         this.moves = 0;
-        this.mholist = new int[(int) Math.floor(boardx*boardy*0.12)][2];
+        this.mholist = new int[(int) Math.floor(boardx * boardy * 0.12)][2];
         mhos = new Vector<Mho>();
-        for (int a = 0; a < (int) Math.floor(boardx*boardy*0.12); a++) {
-            int x = ThreadLocalRandom.current().nextInt(1, boardx-1);
-            int y = ThreadLocalRandom.current().nextInt(1, boardy-1);
+        for (int a = 0; a < (int) Math.floor(boardx * boardy * 0.12); a++) {
+            int x = ThreadLocalRandom.current().nextInt(1, boardx - 1);
+            int y = ThreadLocalRandom.current().nextInt(1, boardy - 1);
             if (board.getCell(x, y) != 1) {
                 int c = 0;
                 for (Mho b : mhos) {
@@ -155,23 +156,23 @@ public class Display extends JPanel {
         Graphics2D g2d = (Graphics2D) g.create();
         if (playerDeath) {
             g2d.setColor(Color.RED);
-            g2d.fillRect(0, 0, boardx*20, boardy*20+40);
+            g2d.fillRect(0, 0, boardx * 20, boardy * 20 + 40);
             Font font = new Font("Serif", Font.PLAIN, 24);
             g2d.setFont(font);
             g2d.setColor(Color.BLACK);
-            g2d.drawString("You lose!", 80, 100);
-            g2d.drawString("Press 'r' to restart", 40, 140);
+            g2d.drawString("You lose!", boardx * 10 - 50, boardy * 10 - 20);
+            g2d.drawString("Press 'r' to restart", boardx * 10 - 80, boardy * 11 + 20);
         } else if (mhos.size() == 0) {
             g2d.setColor(Color.GREEN);
-            g2d.fillRect(0, 0, boardx*20, boardy*20+40);
+            g2d.fillRect(0, 0, boardx * 20, boardy * 20 + 40);
             Font font = new Font("Serif", Font.PLAIN, 24);
             g2d.setFont(font);
             g2d.setColor(Color.BLACK);
-            g2d.drawString("You win!", 80, 100);
-            g2d.drawString("Press 'r' to restart", 40, 140);
+            g2d.drawString("You win!", boardx * 10 - 45, boardy * 10 - 20);
+            g2d.drawString("Press 'r' to restart", boardx * 10 - 80, boardy * 11 + 20);
         } else {
-            for (int y = 0; y < boardx; y++) {
-                for (int x = 0; x < boardy; x++) {
+            for (int y = 0; y < boardy; y++) {
+                for (int x = 0; x < boardx; x++) {
                     if (board.getCell(x, y) == 1) {
                         g2d.drawImage(image, x * 20, y * 20, null);
                     }
@@ -183,7 +184,7 @@ public class Display extends JPanel {
                 g2d.fillRect(a.getX() * 20, a.getY() * 20, 20, 20);
             }
             g2d.setColor(Color.BLACK);
-            g2d.drawString("Moves: " + this.moves, 5, boardy*20+20);
+            g2d.drawString("Moves: " + this.moves, 5, boardy * 20 + 20);
         }
     }
 }
