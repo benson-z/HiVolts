@@ -25,6 +25,7 @@ public class Display extends JPanel {
     private int[][] mholist;
     private BufferedImage image = null;
     private BufferedImage playerimg = null;
+    private BufferedImage mhoimg = null;
     private boolean playerDeath = false;
     private int moves;
 
@@ -33,8 +34,9 @@ public class Display extends JPanel {
         this.boardy = boardy;
         setup();
         try {
-            image = ImageIO.read(new File("hivolts/fence.png"));
-            playerimg = ImageIO.read(new File("hivolts/player.png"));
+            image = ImageIO.read(new File("fence.png"));
+            playerimg = ImageIO.read(new File("player.png"));
+            mhoimg = ImageIO.read(new File("MHO.png"));
         } catch (IOException e) {
         }
         this.setFocusable(true);
@@ -180,8 +182,7 @@ public class Display extends JPanel {
             }
             g2d.drawImage(playerimg, player.getX() * 20, player.getY() * 20, null);
             for (Mho a : mhos) {
-                g2d.setColor(Color.GREEN);
-                g2d.fillRect(a.getX() * 20, a.getY() * 20, 20, 20);
+                g2d.drawImage(mhoimg, a.getX() * 20, a.getY() * 20, null);
             }
             g2d.setColor(Color.BLACK);
             g2d.drawString("Moves: " + this.moves, 5, boardy * 20 + 20);
