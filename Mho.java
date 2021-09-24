@@ -34,9 +34,19 @@ public class Mho {
         }
         return true;
     }
+    public void die() {
+        x = 0;
+        y = 0;
+    }
+    public Boolean alive() {
+        return x == 0 && y == 0;
+    }
     public Boolean update() {
         int xdif = player.getX() - x;
         int ydif = player.getY() - y;
+        if (x == 0 && y == 0) {
+            return false;
+        }
         if (xdif == 0 && ydif >= 0 && availible(x, y+1)) {
             y++;
         }

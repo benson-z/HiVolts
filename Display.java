@@ -77,13 +77,10 @@ public class Display extends JPanel {
                 if (code == 0) {
                     for (int a = 0; a < mhos.size(); a++) {
                         if (!mhos.get(a).update()) {
-                            mhos.remove(a);
-                            mholist[a][0] = 0;
-                            mholist[a][1] = 0;
-                        } else {
-                            mholist[a][0] = mhos.get(a).getX();
-                            mholist[a][1] = mhos.get(a).getY();
+                            mhos.get(a).die();
                         }
+                        mholist[a][0] = mhos.get(a).getX();
+                        mholist[a][1] = mhos.get(a).getY();
                     }
                 }
                 for (int a = 0; a < mhos.size(); a++)
@@ -181,7 +178,9 @@ public class Display extends JPanel {
             }
             g2d.drawImage(playerimg, player.getX() * 20, player.getY() * 20, null);
             for (Mho a : mhos) {
-                g2d.drawImage(mhoimg, a.getX() * 20, a.getY() * 20, null);
+                if (!a.alive()) {
+                    g2d.drawImage(mhoimg, a.getX() * 20, a.getY() * 20, null);
+                }
             }
             g2d.setColor(Color.BLACK);
             g2d.drawString("Moves: " + this.moves, 5, boardy*20+20);
